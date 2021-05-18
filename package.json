@@ -1,0 +1,40 @@
+{
+  "name": "beat-the-bookie",
+  "version": "1.0.0",
+  "description": "Beat the bookie allows sports betters to bet on games without having to deal with shifted lines.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack-dev-server --mode development",
+    "dev": "webpack --mode=development --watch",
+    "live-server": "live-server client/dist/",
+    "live": "live-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sgasser94/beat-the-bookie.git"
+  },
+  "author": "Samuel Gasser",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sgasser94/beat-the-bookie/issues"
+  },
+  "homepage": "https://github.com/sgasser94/beat-the-bookie#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.1.0",
+    "@babel/core": "^7.1.0",
+    "@babel/preset-env": "^7.1.0",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.2",
+    "css-loader": "^1.0.0",
+    "style-loader": "^0.23.0",
+    "webpack": "^4.19.1",
+    "webpack-cli": "^3.1.1",
+    "webpack-dev-server": "^3.1.8"
+  },
+  "dependencies": {
+    "live-server": "^1.2.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  }
+}
