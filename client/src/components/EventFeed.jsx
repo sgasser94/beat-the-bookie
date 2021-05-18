@@ -11,6 +11,9 @@ class EventFeed extends React.Component {
 
   fetchEvents(target) {
     console.log('searching for', event.target.value);
+    // GET events for today
+    // put all of those events into this.state.events array
+
   }
 
   render() {
@@ -23,12 +26,12 @@ class EventFeed extends React.Component {
               <option value="baseball">MLB</option>
               <option value="basketball">NBA</option>
               <option value="football">NFL</option>
-              <option value="golf">PGA</option>
               <option value="hockey">NHL</option>
             </select>
           </label>
         </div>
         <div id="events-feed">
+          {/* map through this.state.events */}
           <Event />
           <Event />
           <Event />
