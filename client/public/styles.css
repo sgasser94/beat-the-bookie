@@ -1,0 +1,11 @@
+#root {
+  color: black;
+}
+
+.dashboard {
+  background-color: lightgrey;
+}
+
+.feeds-container {
+  border: 1px solid grey;
+}
