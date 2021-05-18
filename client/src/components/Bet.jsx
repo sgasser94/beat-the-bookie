@@ -1,6 +1,6 @@
 import React from 'react';
 
-class Bet extends React.Component {
+class LiveBet extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -14,4 +14,4 @@ class Bet extends React.Component {
   }
 }
 
-export default Bet;
+export default LiveBet;

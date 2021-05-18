@@ -7,12 +7,18 @@ class Event extends React.Component {
   }
 
   render() {
+    const {
+      id,
+      status,
+      time,
+      homeTeam,
+      awayTeam
+    } = this.props;
     return (
       <div id="event">
-        <h4>Dodgers @ Mariners</h4>
-        <p>{Date.now()}</p>
-        <p>T-Mobile Park</p>
-        <p>Score: 0 | 0</p>
+        <h4>{awayTeam} @ {homeTeam}</h4>
+        <p>{time}</p>
+        <p>{status}</p>
       </div>
     )
   }

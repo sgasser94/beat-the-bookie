@@ -44,8 +44,7 @@ class Dashboard extends React.Component {
       {
         renderDeposit &&
         <div id="add-tokens">
-          <p>Add Tokens: </p>
-          <input type="text" onChange={this.handleDepositValueChange} placeholder="Tokens"></input>
+          <input type="text" onChange={this.handleDepositValueChange} placeholder="$"></input>
           <button onClick={this.depositTokens}>Deposit</button>
         </div>
       }

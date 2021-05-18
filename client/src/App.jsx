@@ -6,11 +6,11 @@ import HistoryFeed from './components/HistoryFeed.jsx';
 
 
 const App = () => (
-  <>
+  <div id="app">
     <div className="dashboard">
       <Dashboard />
     </div>
-    <div className="feeds-container">
+    <div className="feeds">
       <div id="event-half">
         <EventFeed />
       </div>
@@ -19,7 +19,7 @@ const App = () => (
         <HistoryFeed />
       </div>
     </div>
-  </>
+  </div>
 )
 
 export default App;

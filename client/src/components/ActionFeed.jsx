@@ -1,5 +1,5 @@
 import React from 'react';
-import Bet from './Bet.jsx';
+import LiveBet from './Bet.jsx';
 
 class ActionFeed extends React.Component {
   constructor(props) {
@@ -14,12 +14,12 @@ class ActionFeed extends React.Component {
     const projectedTokens = (liveTokens * (Math.random() * 20)).toFixed(2);
     return (
       <div id="action-container">
-        <div id="feed-summary">
+        <div className="feed-summary">
           <p>Live tokens: {liveTokens}</p>
           <p>Projected net: {projectedTokens}</p>
         </div>
         <div id="action-feed">
-          <Bet />
+          <LiveBet />
         </div>
       </div>
     )
