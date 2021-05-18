@@ -7,14 +7,18 @@ import HistoryFeed from './components/HistoryFeed.jsx';
 
 const App = () => (
   <>
-  <div className="dashboard">
-    <Dashboard />
-  </div>
-  <div className="feeds-container">
-    <EventFeed />
-    <ActionFeed />
-    <HistoryFeed />
-  </div>
+    <div className="dashboard">
+      <Dashboard />
+    </div>
+    <div className="feeds-container">
+      <div id="event-half">
+        <EventFeed />
+      </div>
+      <div id="action-half">
+        <ActionFeed />
+        <HistoryFeed />
+      </div>
+    </div>
   </>
 )
 

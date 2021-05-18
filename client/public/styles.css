@@ -8,4 +8,5 @@
 
 .feeds-container {
   border: 1px solid grey;
+  display: flex;
 }
