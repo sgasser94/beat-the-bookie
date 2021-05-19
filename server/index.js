@@ -2,6 +2,11 @@ const express = require('express');
 const path = require('path');
 const port = 3000;
 const MLB = require('./external/fetchMLB.js');
+const db = require('./db/connection.js');
+const model = require('./db/model.js');
+
+db.on('error', (err) => console.log('Error connected to MongodB - mvp', err));
+db.once('open', () => console.log('connected to MongoDB - mvp!'));
 
 
 var app = express();
@@ -13,6 +18,19 @@ app.get('/mlbGames', (req, res) => {
   console.log(date);
   MLB.fetchGames(date, (games) => {
       res.send(games.data);
+  })
+})
+
+app.post('/mlbBets', (req, res) => {
+  model.RecordBaseballBet(req.body, (err) => {
+    if (err) {
+      console.log('final err', err);
+      res.status(404);
+      res.end();
+    } else {
+      res.status(201);
+      res.end();
+    }
   })
 })
 

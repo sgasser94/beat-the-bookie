@@ -9,6 +9,8 @@ class ActionFeed extends React.Component {
     };
   }
 
+
+
   render() {
     const liveTokens = Math.floor(Math.random() * 10000);
     const projectedTokens = (liveTokens * (Math.random() * 20)).toFixed(2);

@@ -1,4 +1,5 @@
 import React from 'react';
+import $ from 'jquery';
 
 class BetPopup extends React.Component {
   constructor(props) {
@@ -33,18 +34,34 @@ class BetPopup extends React.Component {
       wager,
       payOut
     } = this.state;
+    if (wager === 0) return;
     const betObject = {
       gameId,
       selectedBet,
       time,
+      status,
       homeTeam,
       awayTeam,
       wager: parseInt(wager),
       payOut: parseInt(payOut),
       win: null
     }
-    console.log('bet submitted!', betObject);
+    console.log('betObj', betObject);
+    $.ajax({
+      method: 'POST',
+      url: '/mlbBets',
+      data: JSON.stringify(betObject),
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      success: () => console.log('successful post!'),
+      error: (err) => console.log('error sending post')
+    })
     toggleBetModal();
+
+    // POST BET TO DATABASE
+    // GET TO ACTION FEED ENDPOINT TO REFRESH
+
   }
 
   handleChange() {
