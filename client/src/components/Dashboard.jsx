@@ -15,11 +15,16 @@ class Dashboard extends React.Component {
   }
 
   depositTokens() {
+    const field = document.getElementById('depositvalue');
+    if (isNaN(field.value) || field.value === '') {
+      field.value = '';
+      return;
+    }
     this.setState({
       tokens: parseInt(this.state.tokens) + parseInt(this.state.depositValue),
+      depositValue: '',
     });
-    this.toggleRenderDeposit();
-
+    field.value = '';
   }
 
   handleDepositValueChange(event) {
@@ -38,17 +43,19 @@ class Dashboard extends React.Component {
     const { renderDeposit, tokens, toggleButtonText } = this.state;
     return (
       <>
-      <h1>Beat The Bookie</h1>
-      <p>Sam Gasser</p>
-      <p>Tokens: {tokens}</p>
-      {
-        renderDeposit &&
-        <div id="add-tokens">
-          <input type="text" onChange={this.handleDepositValueChange} placeholder="$"></input>
+        <h1>Beat The Bookie</h1>
+
+
+        <div id="username-balance-deposit">
+          <div id="user-info">
+          <div>Sam Gasser</div>
+          <div>Tokens: {tokens}</div>
+          </div>
+          <div>
+          <input type="text" id="depositvalue" value={this.depositValue} onChange={this.handleDepositValueChange} placeholder="$"></input>
           <button onClick={this.depositTokens}>Deposit</button>
+          </div>
         </div>
-      }
-      <button onClick={this.toggleRenderDeposit}>{ renderDeposit ? 'Close' : 'Add Tokens' }</button>
       </>
     )
   }

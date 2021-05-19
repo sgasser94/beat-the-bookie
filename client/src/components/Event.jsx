@@ -24,8 +24,8 @@ class Event extends React.Component {
           <div id="odds">
             <div id="ou">O/U: 6.5</div>
             <div id="ml-rl">
-              <div>SEA ML +150, RL +2.5</div>
-              <div>LAD ML -180, RL -2.5</div>
+              <div>SEA ML +150 | RL +2.5</div>
+              <div>LAD ML -180 | RL -2.5</div>
             </div>
           </div>
           <div id="bet-button-wrapper">

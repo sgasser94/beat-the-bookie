@@ -38,5 +38,10 @@
 #odds-bet-button {
   display: flex;
   justify-content: space-around;
-  align-items: space-around;
+  align-items: center;
+}
+
+#odds {
+  display: flex;
+  flex-direction: column;
 }
