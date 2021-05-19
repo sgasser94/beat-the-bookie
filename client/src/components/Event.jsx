@@ -19,7 +19,6 @@ class Event extends React.Component {
   }
 
   render() {
-    console.log('eventprops', this.props);
     const {
       id,
       status,

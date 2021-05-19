@@ -22,12 +22,10 @@ class EventFeed extends React.Component {
 
   fetchEvents(target) {
     const { dateValue } = this.state;
-    console.log('searching for', dateValue);
     $.ajax({
       method: 'GET',
       url: `/mlbGames?date=${dateValue}`,
       success: (data) => {
-        console.log('successful get', data);
         this.setState({
           events: data
         });
