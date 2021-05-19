@@ -1,9 +1,21 @@
 import React from 'react';
+import Modal from './Modal.jsx'
+import BetPopup from './BetPopup.jsx';
 
 class Event extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      renderModal: false
+    };
+
+    this.toggleBetModal = this.toggleBetModal.bind(this);
+  }
+
+  toggleBetModal() {
+    this.setState({
+      renderModal: !this.state.renderModal
+    })
   }
 
   render() {
@@ -27,10 +39,33 @@ class Event extends React.Component {
       awayTeamErrors,
       stadium
     } = this.props;
+    const betModal = this.state.renderModal ? (
+      <div id="page-blocker">
+        <Modal>
+          <div>
+            <BetPopup
+              gameId={this.props.gameId}
+              time={this.props.time}
+              stadium={this.props.stadium}
+              status={this.props.status}
+              inning={this.props.inning}
+              homeTeam={this.props.homeTeam}
+              awayTeam={this.props.awayTeam}
+              pointSpread={this.props.pointSpread}
+              awayML={this.props.awayML}
+              homeML={this.props.homeML}
+              overUnder={this.props.overUnder}
+              toggleBetModal={this.toggleBetModal}
+            />
+          </div>
+        </Modal>
+      </div>
+    ) : '';
     const awayRL = awayML < 0 ? 0 - pointSpread : pointSpread;
     const homeRL = homeML < 0 ? 0 - pointSpread : pointSpread;
     return (
       <div id="event">
+        {betModal}
         <div id="teams-date-location">
           <strong>{awayTeam} ({awayML > 0 ? `+${awayML}` : awayML}) {awayML < 0 && pointSpread ? pointSpread : ''} @ {homeTeam} ({homeML > 0 ? `+${homeML}` : homeML})</strong>
         {time}, Stadium ID {stadium}
@@ -38,18 +73,13 @@ class Event extends React.Component {
         <div id="odds-bet-button">
           <div id="odds">
             <div id="ou">O/U: {overUnder}</div>
-            <div id="spread">
-              {pointSpread ? (
-                <div id="spread">Spread: {pointSpread}</div>
-              ) : ''}
-            </div>
+            <div id="spread">Spread: {pointSpread}</div>
           </div>
           <div id="bet-button-wrapper">
-            <button id="bet-button">BET</button>
+            <button id="bet-button" onClick={this.toggleBetModal}>BET</button>
           </div>
         </div>
       </div>
-
     )
   }
 }

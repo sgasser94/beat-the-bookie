@@ -38,6 +38,7 @@ class EventFeed extends React.Component {
 
   render() {
     const { sport, events } = this.state;
+
     return (
       <>
         <div className="event-feed-summary">
@@ -45,16 +46,18 @@ class EventFeed extends React.Component {
             <input onChange={this.handleChange} type="date" value={this.state.dateValue} min="2021-04-01" max="2021-09-01"/>
             <button id="event-search" onClick={this.fetchEvents}>Search</button>
         </div>
+
         <div id="events-feed">
           {/* map through this.state.events */}
           {events.map((game) => {
             return <Event
               key={game.GameID}
+              gameId={game.GameID}
               status={game.Status}
               time={game.DateTime}
               homeTeam={game.HomeTeam}
               awayTeam={game.AwayTeam}
-              pointSpread={game.pointSpread}
+              pointSpread={game.PointSpread}
               awayML={game.PointSpreadAwayTeamMoneyLine}
               homeML={game.PointSpreadHomeTeamMoneyLine}
               overUnder={game.OverUnder}
