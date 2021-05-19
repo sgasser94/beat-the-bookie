@@ -24,7 +24,8 @@ class Event extends React.Component {
       homeTeamErrors,
       awayTeamRuns,
       awayTeamHits,
-      awayTeamErrors
+      awayTeamErrors,
+      stadium
     } = this.props;
     const awayRL = awayML < 0 ? 0 - pointSpread : pointSpread;
     const homeRL = homeML < 0 ? 0 - pointSpread : pointSpread;
@@ -32,7 +33,7 @@ class Event extends React.Component {
       <div id="event">
         <div id="teams-date-location">
           <strong>{awayTeam} ({awayML > 0 ? `+${awayML}` : awayML}) {awayML < 0 && pointSpread ? pointSpread : ''} @ {homeTeam} ({homeML > 0 ? `+${homeML}` : homeML})</strong>
-        7:10pm, Dodger Stadium, Los Angeles, CA
+        {time}, Stadium ID {stadium}
         </div>
         <div id="odds-bet-button">
           <div id="odds">
@@ -41,23 +42,6 @@ class Event extends React.Component {
               {pointSpread ? (
                 <div id="spread">Spread: {pointSpread}</div>
               ) : ''}
-            </div>
-            <div className="team-scoreboard" id="scoreboard">
-              <div id="scoreboard-labels">
-                R
-                <div>H</div>
-                E
-              </div>
-              <div id="away-team">
-                {awayTeamRuns}
-                {awayTeamHits}
-                {awayTeamErrors}
-              </div>
-              <div className="team-scoreboard" id="home-team">
-                {homeTeamRuns}
-                {homeTeamHits}
-                {homeTeamErrors}
-              </div>
             </div>
           </div>
           <div id="bet-button-wrapper">

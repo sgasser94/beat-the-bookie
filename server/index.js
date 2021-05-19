@@ -9,7 +9,9 @@ app.use(express.json());
 app.use(express.static(__dirname + '/../client/dist'));
 
 app.get('/mlbGames', (req, res) => {
-  MLB.fetchGames((games) => {
+  var date = req.query.date;
+  console.log(date);
+  MLB.fetchGames(date, (games) => {
       res.send(games.data);
   })
 })

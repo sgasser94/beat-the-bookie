@@ -8,17 +8,24 @@ class EventFeed extends React.Component {
     super();
     this.state = {
       events: [],
-      sport: 'Select'
+      dateValue: "2021-05-19"
     };
     this.fetchEvents = this.fetchEvents.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleChange(event) {
+    this.setState({
+      dateValue: event.target.value
+    })
   }
 
   fetchEvents(target) {
-    console.log('searching for', event.target.value);
-    const url = `https://fly.sportsdata.io/v3/mlb/scores/json/GamesByDate/2021-MAY-18`;
+    const { dateValue } = this.state;
+    console.log('searching for', dateValue);
     $.ajax({
       method: 'GET',
-      url: '/mlbGames',
+      url: `/mlbGames?date=${dateValue}`,
       success: (data) => {
         console.log('successful get', data);
         this.setState({
@@ -34,16 +41,9 @@ class EventFeed extends React.Component {
     return (
       <>
         <div className="event-feed-summary">
-          <label>
-            Search Today's Events:
-            <select onChange={this.fetchEvents}>
-              <option value="search" disabled hidden>Search</option>
-              <option value="baseball">MLB</option>
-              <option value="basketball">NBA</option>
-              <option value="football">NFL</option>
-              <option value="hockey">NHL</option>
-            </select>
-          </label>
+          <label>Browse Events: </label>
+            <input onChange={this.handleChange} type="date" value={this.state.dateValue} min="2021-04-01" max="2021-09-01"/>
+            <button id="event-search" onClick={this.fetchEvents}>Search</button>
         </div>
         <div id="events-feed">
           {/* map through this.state.events */}
@@ -65,6 +65,7 @@ class EventFeed extends React.Component {
               awayTeamRuns={game.AwayTeamRuns}
               awayTeamHits={game.AwayTeamHits}
               awayTeamErrors={game.AwayTeamErorrs}
+              stadium={game.StadiumID}
               />
           })}
           {/* <Event />
