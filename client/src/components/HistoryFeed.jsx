@@ -4,6 +4,10 @@ import PastBet from './PastBet.jsx';
 class HistoryFeed extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      oldBets: [],
+      oldWins: []
+    }
   }
 
   render() {
@@ -15,6 +19,7 @@ class HistoryFeed extends React.Component {
           <p>Won 24% of bets (24/100)</p>
         </div>
         <div id="history-feed">
+          <PastBet />
           <PastBet />
           <PastBet />
           <PastBet />

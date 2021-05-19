@@ -1,0 +1,18 @@
+#bet {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border: 1px solid red;
+  max-height: 60px;
+  min-height: 60px;
+}
+
+#game-summary {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+#action-feed {
+  overflow-y: scroll;
+}

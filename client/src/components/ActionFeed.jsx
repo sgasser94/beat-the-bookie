@@ -1,5 +1,5 @@
 import React from 'react';
-import LiveBet from './Bet.jsx';
+import LiveBet from './LiveBet.jsx';
 
 class ActionFeed extends React.Component {
   constructor(props) {
@@ -19,6 +19,11 @@ class ActionFeed extends React.Component {
           <p>Projection: {projectedTokens} Tokens</p>
         </div>
         <div id="action-feed">
+          <LiveBet />
+          <LiveBet />
+          <LiveBet />
+          <LiveBet />
+          <LiveBet />
           <LiveBet />
         </div>
       </div>
