@@ -8,54 +8,44 @@ class BetPopup extends React.Component {
       wager: 0,
       payOut: 0
     }
-    // this.selectBet = this.selectBet.bind(this);
-    // // this.calculatePayout = this.calculatePayout.bind(this);
-    // this.updateBetAmount = this.updateBetAmount.bind(this);
-
     this.handleChange = this.handleChange.bind(this);
     this.calculatePayout = this.calculatePayout.bind(this);
+    this.submitBet = this.submitBet.bind(this);
   }
 
-  // selectBet() {
-  //   this.setState({
-  //     selectedBet: event.target.value
-  //   })
-  // }
-
-  // updateBetAmount() {
-  //   const { selectedBet } = this.state;
-  //   const {
-  //     homeML,
-  //     awayML,
-  //     overUnder
-  //   } = this.props;
-  //   console.log('selected bet', selectedBet);
-  //   let betAmount = event.target.value;
-  //   let payoutAmount = 0;
-  //   if (selectedBet === 'homeML') {
-  //     console.log('homeml', homeML)
-  //     if (parseInt(homeML) > 0) {
-  //       payoutAmount = parseInt(betAmount) + (parseInt(betAmount) * (parseInt(homeML) / 100));
-  //     } else {
-  //       payoutAmount = parseInt(betAmount) + (parseInt(betAmount) * (100 / Math.abs(parseInt(homeML))));
-  //     }
-  //   } else if (selectedBet === 'awayML') {
-  //     if (awayMLNumber > 0) {
-  //       payoutAmount = parseInt(betAmount) + (parseInt(betAmount) * (awayMLNumber / 100));
-  //     } else {
-  //       payoutAmount = parseInt(betAmount) + (parseInt(betAmount) * (awayMLNumber) / 100);
-  //     }
-  //   } else if (selectedBet === 'over' || selectedBet === 'under') {
-  //     payoutAmount = parseInt(betAmount) * 2;
-  //   } else {
-  //     console.log('else?');
-  //   }
-
-  //   this.setState({
-  //     betAmount: parseInt(betAmount),
-  //     payOut: payoutAmount.toFixed(2)
-  //   }, () => console.log('state', this.state));
-  // }
+  submitBet() {
+    const {
+      gameId,
+      time,
+      stadium,
+      status,
+      inning,
+      homeTeam,
+      awayTeam,
+      pointSpread,
+      awayML,
+      homeML,
+      overUnder,
+      toggleBetModal
+    } = this.props;
+    const {
+      selectedBet,
+      wager,
+      payOut
+    } = this.state;
+    const betObject = {
+      gameId,
+      selectedBet,
+      time,
+      homeTeam,
+      awayTeam,
+      wager: parseInt(wager),
+      payOut: parseInt(payOut),
+      win: null
+    }
+    console.log('bet submitted!', betObject);
+    toggleBetModal();
+  }
 
   handleChange() {
     const value = event.target.value;
@@ -90,9 +80,13 @@ class BetPopup extends React.Component {
     } else {
       console.log('else?');
     }
+    if (isNaN(payoutAmount)) {
+      payoutAmount = 0;
+    }
+
     this.setState({
       payOut: payoutAmount.toFixed(2)
-    }, console.log(this.state));
+    });
   }
 
 
@@ -146,10 +140,10 @@ class BetPopup extends React.Component {
             <input name="wager" type="text" placeholder="$" onChange={this.handleChange}></input>
             Payout:
             {this.state.payOut}
-
           </div>
+          <button id="wager-submit" onClick={this.submitBet}>Lock In</button>
         </div>
-        <button onClick={toggleBetModal}>X</button>
+        <button id="modal-exit-button" onClick={toggleBetModal}>X</button>
       </div>
     )
   }
