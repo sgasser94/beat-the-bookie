@@ -14,9 +14,9 @@ class ActionFeed extends React.Component {
     const projectedTokens = (liveTokens * (Math.random() * 20)).toFixed(2);
     return (
       <div id="action-container">
-        <div className="feed-summary">
-          <p>Live tokens: {liveTokens}</p>
-          <p>Projected net: {projectedTokens}</p>
+        <div id="action-feed-summary">
+          <p>Live Tokens: {liveTokens}</p>
+          <p>Projection: {projectedTokens} Tokens</p>
         </div>
         <div id="action-feed">
           <LiveBet />

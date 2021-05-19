@@ -1,0 +1,63 @@
+body {
+}
+
+#app {
+  color: black;
+  width: 90%;
+  margin: auto;
+  margin-top: 2%;
+  height: 700px;
+}
+
+.dashboard {
+  background-color: lightgrey;
+  display: flex;
+  justify-content: space-around;
+}
+
+.feeds {
+  display: flex;
+  height: 100%;
+  justify-content: space-between;
+  border: 1px solid blue;
+}
+
+#action-feed-summary {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 10%;
+  background-color: lightgrey;
+}
+
+#history-feed-summary {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 10%;
+  background-color: lightgrey;
+}
+
+#action-half {
+  height: 100%;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+}
+
+
+
+#action-container {
+  height: 50%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+#history-container {
+  display: flex;
+  flex-direction: column;
+  height: 50%;
+  width: 100%;
+  border: 1px solid grey;
+}

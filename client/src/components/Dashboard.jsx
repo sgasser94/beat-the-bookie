@@ -38,7 +38,7 @@ class Dashboard extends React.Component {
     const { renderDeposit, tokens, toggleButtonText } = this.state;
     return (
       <>
-      <h3>Beat The Bookie</h3>
+      <h1>Beat The Bookie</h1>
       <p>Sam Gasser</p>
       <p>Tokens: {tokens}</p>
       {

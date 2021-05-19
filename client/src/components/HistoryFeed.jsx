@@ -10,8 +10,9 @@ class HistoryFeed extends React.Component {
     const netTokens = (Math.random() * 10000).toFixed(2);
     return (
       <div id="history-container">
-        <div className="feed-summary">
+        <div id="history-feed-summary">
           <p>Past week: {netTokens} tokens</p>
+          <p>Won 24% of bets (24/100)</p>
         </div>
         <div id="history-feed">
           <PastBet />
