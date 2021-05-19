@@ -1,6 +1,6 @@
 const BaseballBet = require('./controller.js');
 
-const RecordBaseballBet = (data, callback) => {
+const recordBaseballBet = (data, callback) => {
   const newBet = new BaseballBet({
     gameId: data.gameId,
     selectedBet: data.selectedBet,
@@ -22,6 +22,17 @@ const RecordBaseballBet = (data, callback) => {
   })
 }
 
+const searchActiveBaseballBets = (callback) => {
+  BaseballBet.find({ status: 'Scheduled' }, (err, bets) => {
+    if (err) {
+      callback(err);
+    } else {
+      callback(null, bets);
+    }
+  })
+}
+
 module.exports = {
-  RecordBaseballBet
+  recordBaseballBet,
+  searchActiveBaseballBets
 };

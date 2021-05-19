@@ -21,10 +21,23 @@ app.get('/mlbGames', (req, res) => {
   })
 })
 
-app.post('/mlbBets', (req, res) => {
-  model.RecordBaseballBet(req.body, (err) => {
+app.get('/mlbBets', (req, res) => {
+  model.searchActiveBaseballBets((err, data) =>{
     if (err) {
-      console.log('final err', err);
+      console.log('err getting bets', err);
+      res.status(404);
+      res.send();
+    } else {
+      console.log('sending bets');
+      res.status(200);
+      res.send(data);
+    }
+  })
+})
+
+app.post('/mlbBets', (req, res) => {
+  model.recordBaseballBet(req.body, (err) => {
+    if (err) {
       res.status(404);
       res.end();
     } else {
