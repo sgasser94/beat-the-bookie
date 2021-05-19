@@ -7,25 +7,57 @@ class Event extends React.Component {
   }
 
   render() {
+    console.log('eventprops', this.props);
     const {
       id,
       status,
       time,
       homeTeam,
-      awayTeam
+      awayTeam,
+      pointSpread,
+      awayML,
+      homeML,
+      overUnder,
+      inning,
+      homeTeamRuns,
+      homeTeamHits,
+      homeTeamErrors,
+      awayTeamRuns,
+      awayTeamHits,
+      awayTeamErrors
     } = this.props;
+    const awayRL = awayML < 0 ? 0 - pointSpread : pointSpread;
+    const homeRL = homeML < 0 ? 0 - pointSpread : pointSpread;
     return (
       <div id="event">
         <div id="teams-date-location">
-          <strong>Mariners (+150) @ Dodgers (-180)</strong>
+          <strong>{awayTeam} ({awayML > 0 ? `+${awayML}` : awayML}) {awayML < 0 && pointSpread ? pointSpread : ''} @ {homeTeam} ({homeML > 0 ? `+${homeML}` : homeML})</strong>
         7:10pm, Dodger Stadium, Los Angeles, CA
         </div>
         <div id="odds-bet-button">
           <div id="odds">
-            <div id="ou">O/U: 6.5</div>
-            <div id="ml-rl">
-              <div>SEA ML +150 | RL +2.5</div>
-              <div>LAD ML -180 | RL -2.5</div>
+            <div id="ou">O/U: {overUnder}</div>
+            <div id="spread">
+              {pointSpread ? (
+                <div id="spread">Spread: {pointSpread}</div>
+              ) : ''}
+            </div>
+            <div className="team-scoreboard" id="scoreboard">
+              <div id="scoreboard-labels">
+                R
+                <div>H</div>
+                E
+              </div>
+              <div id="away-team">
+                {awayTeamRuns}
+                {awayTeamHits}
+                {awayTeamErrors}
+              </div>
+              <div className="team-scoreboard" id="home-team">
+                {homeTeamRuns}
+                {homeTeamHits}
+                {homeTeamErrors}
+              </div>
             </div>
           </div>
           <div id="bet-button-wrapper">

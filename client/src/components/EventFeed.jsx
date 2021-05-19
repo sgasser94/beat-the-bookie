@@ -15,18 +15,18 @@ class EventFeed extends React.Component {
 
   fetchEvents(target) {
     console.log('searching for', event.target.value);
-    // const url = `https://fly.sportsdata.io/v3/mlb/scores/json/GamesByDate/2021-MAY-18`;
-    // $.ajax({
-    //   method: 'GET',
-    //   url: '/mlbGames',
-    //   success: (data) => {
-    //     console.log('successful get', data);
-    //     this.setState({
-    //       events: data
-    //     });
-    //   },
-    //   error: (err) => console.log('error', err)
-    // }
+    const url = `https://fly.sportsdata.io/v3/mlb/scores/json/GamesByDate/2021-MAY-18`;
+    $.ajax({
+      method: 'GET',
+      url: '/mlbGames',
+      success: (data) => {
+        console.log('successful get', data);
+        this.setState({
+          events: data
+        });
+      },
+      error: (err) => console.log('error', err)
+    })
   }
 
   render() {
@@ -59,8 +59,15 @@ class EventFeed extends React.Component {
               homeML={game.PointSpreadHomeTeamMoneyLine}
               overUnder={game.OverUnder}
               inning={game.Inning}
+              homeTeamRuns={game.HomeTeamRuns}
+              homeTeamHits={game.HomeTeamHits}
+              homeTeamErrors={game.HomeTeamErrors}
+              awayTeamRuns={game.AwayTeamRuns}
+              awayTeamHits={game.AwayTeamHits}
+              awayTeamErrors={game.AwayTeamErorrs}
               />
           })}
+          {/* <Event />
           <Event />
           <Event />
           <Event />
@@ -74,8 +81,7 @@ class EventFeed extends React.Component {
           <Event />
           <Event />
           <Event />
-          <Event />
-          <Event />
+          <Event /> */}
         </div>
       </>
     )
