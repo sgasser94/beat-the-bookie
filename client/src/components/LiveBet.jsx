@@ -8,22 +8,30 @@ class LiveBet extends React.Component {
   render() {
     console.log('props', this.props);
     const {
-      awayTeam,
-      gameId,
-      homeTeam,
+      wager,
       payOut,
       selectedBet,
+      awayTeam,
+      homeTeam,
+      gameId,
       status,
+      win,
       time,
-      wager
+      awayTeamRuns,
+      awayTeamHits,
+      awayTeamErrors,
+      homeTeamRuns,
+      homeTeamHits,
+      homeTeamError,
+      inning
     } = this.props;
     const ML = (Math.floor(Math.random() * 300) + 100).toFixed(0);
     return (
     <div id="bet">
       <div id="game-summary">
-        {awayTeam} @ {homeTeam}
+        {awayTeam} @ {homeTeam} | {status === 'final' ? status : `${inning}/9`} | {awayTeam} {awayTeamRuns} | {homeTeam} {homeTeamRuns}
         <div>
-       {new Date(time).toString()}
+       {time}
         </div>
       </div>
       <div id="bet-tokens">

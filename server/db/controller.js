@@ -11,6 +11,12 @@ const baseballSchema = new mongoose.Schema({
   wager: Number,
   payOut: Number,
   win: Boolean,
+  homeTeamRuns: Number,
+  homeTeamHits: Number,
+  homeTeamErrors: Number,
+  awayTeamRuns: Number,
+  awayTeamHits: Number,
+  awayTeamErrors: Number
 })
 
 const BaseballBet = mongoose.model('BaseballBet', baseballSchema);

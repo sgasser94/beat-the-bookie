@@ -10,7 +10,13 @@ const recordBaseballBet = (data, callback) => {
     awayTeam: data.awayTeam,
     wager: data.wager,
     payOut: data.payOut,
-    win: data.win
+    win: data.win,
+    homeTeamRuns: 0,
+    homeTeamHits: 0,
+    homeTeamErrors: 0,
+    awayTeamRuns: 0,
+    awayTeamHits: 0,
+    awayTeamErrors: 0
   })
   newBet.save((err, newBet) => {
     if (err) {
@@ -23,7 +29,7 @@ const recordBaseballBet = (data, callback) => {
 }
 
 const searchActiveBaseballBets = (callback) => {
-  BaseballBet.find({ status: 'Scheduled' }, (err, bets) => {
+  BaseballBet.find({ status: { $in: ['Scheduled', 'InProgress'] } }, (err, bets) => {
     if (err) {
       callback(err);
     } else {

@@ -22,7 +22,7 @@ app.get('/mlbGames', (req, res) => {
 })
 
 app.get('/mlbBets', (req, res) => {
-  model.searchActiveBaseballBets((err, data) =>{
+  model.searchActiveBaseballBets((err, data) => {
     if (err) {
       console.log('err getting bets', err);
       res.status(404);
@@ -46,6 +46,10 @@ app.post('/mlbBets', (req, res) => {
     }
   })
 })
+
+
+
+
 
 
 
