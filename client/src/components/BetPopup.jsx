@@ -42,6 +42,7 @@ class BetPopup extends React.Component {
       status,
       homeTeam,
       awayTeam,
+      overUnder: parseInt(overUnder),
       wager: parseInt(wager),
       payOut: parseInt(payOut),
       win: null

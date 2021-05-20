@@ -1,5 +1,6 @@
 import React from 'react';
 import PastBet from './PastBet.jsx';
+import $ from 'jquery';
 
 class HistoryFeed extends React.Component {
   constructor(props) {
@@ -8,9 +9,12 @@ class HistoryFeed extends React.Component {
       oldBets: [],
       oldWins: []
     }
+
+    this.getCompleteBets = this.getCompleteBets.bind(this);
   }
 
   componentDidMount() {
+    this.getCompleteBets();
     // get bets from database
     // get games from yesterday
     // iterate through today's games
@@ -18,6 +22,19 @@ class HistoryFeed extends React.Component {
         // make object with game results and bet info
         // set state with all of those objects
         // those obects will be the props for each PastBet
+  }
+
+  getCompleteBets() {
+    $.ajax({
+      method: 'GET',
+      url: '/mlbBetsComplete',
+      success: (data) => {
+        this.setState({
+          oldBets: data
+        })
+      },
+      error: (err) => console.log('didnt get data', err)
+    })
   }
 
   render() {
@@ -32,13 +49,27 @@ class HistoryFeed extends React.Component {
           <p>Won 24% of bets (24/100)</p>
         </div>
         <div id="history-feed">
-          {/* {oldBets.map(result => {
+          {oldBets.map(game => {
             return <PastBet
-              homeTeam={result.homeTeam}
-              awayTeam={result.awayTeam}
-              date={result.date}
-              BET???
-          })} */}
+            key={`${game.gameId}${game.wager}`}
+            wager={game.wager}
+            payOut={game.payOut}
+            selectedBet={game.selectedBet}
+            awayTeam={game.awayTeam}
+            homeTeam={game.homeTeam}
+            gameId={game.gameId}
+            status={game.status}
+            win={game.win}
+            time={game.time}
+            awayTeamRuns={game.awayTeamRuns}
+            awayTeamHits={game.awayTeamHits}
+            awayTeamErrors={game.awayTeamErrors}
+            homeTeamRuns={game.homeTeamRuns}
+            homeTeamHits={game.homeTeamHits}
+            homeTeamError={game.homeTeamErrors}
+            inning={game.inning}
+              />
+          })}
         </div>
       </div>
     )

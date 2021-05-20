@@ -9,6 +9,7 @@ const baseballSchema = new mongoose.Schema({
   homeTeam: String,
   awayTeam: String,
   wager: Number,
+  overUnder: Number,
   payOut: Number,
   win: Boolean,
   homeTeamRuns: Number,

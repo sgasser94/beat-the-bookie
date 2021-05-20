@@ -9,6 +9,8 @@
 #event-half {
   height: 100%;
   width: 50%;
+  border: 1px solid grey;
+
 }
 
 #events-feed {

@@ -1,4 +1,5 @@
 import React from 'react';
+import moment from 'moment';
 
 class PastBet extends React.Component {
   constructor(props) {
@@ -6,23 +7,41 @@ class PastBet extends React.Component {
   }
 
   render() {
-    const ML = (Math.floor(Math.random() * 300) + 100);
-    const wagers = [50, 80, 100, 125, 150, 200];
-    const wager = wagers[Math.floor(Math.random() * 5)];
+    console.log('pastbet', this.props);
+    const {
+      wager,
+      payOut,
+      selectedBet,
+      awayTeam,
+      homeTeam,
+      gameId,
+      status,
+      win,
+      time,
+      awayTeamRuns,
+      awayTeamHits,
+      awayTeamErrors,
+      homeTeamRuns,
+      homeTeamHits,
+      homeTeamError,
+      inning
+    } = this.props;
+    const winningTeam = awayTeamRuns > homeTeamRuns ? awayTeam : homeTeam;
+    const teamBetOn = selectedBet === "awayML" ? awayTeam : homeTeam;
 
     return (
-    <div id="bet">
+    <div id="past-bet">
     <div id="game-summary">
-      Lakers @ Celtics
+      {awayTeam} {awayTeamRuns} | {homeTeam} {homeTeamRuns}
       <div>
-     {Date.now()}
+     {moment(time).calendar()}
       </div>
     </div>
     <div id="bet-summary">
-    Mariners ML +{ML}
+    selectedBet: {teamBetOn}, {winningTeam} won
     </div>
     <div id="bet-tokens">
-      Bet {wager}, won {Math.floor((wager / 100) * (100 * (ML / 100)))}
+      Bet {wager} for {payOut}
     </div>
   </div>
     )

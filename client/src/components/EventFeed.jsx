@@ -8,7 +8,7 @@ class EventFeed extends React.Component {
     super();
     this.state = {
       events: [],
-      dateValue: "2021-05-19"
+      dateValue: "2021-05-20"
     };
     this.fetchEvents = this.fetchEvents.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -47,7 +47,7 @@ class EventFeed extends React.Component {
 
         <div id="events-feed">
           {/* map through this.state.events */}
-          {/* {events.map((game) => {
+          {events.map((game) => {
             return <Event
               key={game.GameID}
               gameId={game.GameID}
@@ -68,7 +68,8 @@ class EventFeed extends React.Component {
               awayTeamErrors={game.AwayTeamErorrs}
               stadium={game.StadiumID}
               />
-          })} */}
+          })}
+          {/* <Event />
           <Event />
           <Event />
           <Event />
@@ -82,8 +83,7 @@ class EventFeed extends React.Component {
           <Event />
           <Event />
           <Event />
-          <Event />
-          <Event />
+          <Event /> */}
         </div>
       </>
     )

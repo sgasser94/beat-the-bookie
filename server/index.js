@@ -28,7 +28,42 @@ app.get('/mlbBets', (req, res) => {
       res.status(404);
       res.send();
     } else {
-      console.log('sending bets');
+      console.log('sending active bets');
+      res.status(200);
+      res.send(data);
+    }
+  })
+})
+
+app.put('/mlbBets', (req, res) => {
+  console.log('yo');
+  console.log('req', req.url);
+  console.log('put params:', req.query);
+  model.updateGameToComplete(req.query.gameId, req.query.awayRuns, req.query.homeRuns, (err, data) => {
+    if (err) {
+      res.status(404);
+      res.end();
+    } else {
+      res.status(204);
+      res.send(data);
+    }
+  })
+
+
+  // search bet by gameid, wager, selectedBet
+  // change status to 'Final'
+  // change runs/hits/errors to updated values
+  // logic to determine "win" - turn to boolean
+})
+
+app.get('/mlbBetsComplete', (req, res) => {
+  model.searchCompleteBaseballBets((err, data) => {
+    if (err) {
+      console.log('err getting bets', err);
+      res.status(404);
+      res.send();
+    } else {
+      console.log('sending final bets');
       res.status(200);
       res.send(data);
     }

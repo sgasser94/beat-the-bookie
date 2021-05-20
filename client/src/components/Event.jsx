@@ -68,7 +68,7 @@ class Event extends React.Component {
       <div id="event">
         {betModal}
         <div id="teams-date-location">
-          <strong>{awayTeam} ({awayML > 0 ? `+${awayML}` : awayML}) {awayML < 0 && pointSpread ? pointSpread : ''} @ {homeTeam} ({homeML > 0 ? `+${homeML}` : homeML})</strong>
+          <strong>{awayTeam} ({awayML > 0 ? `+${awayML}` : awayML}) @ {homeTeam} ({homeML > 0 ? `+${homeML}` : homeML})</strong>
           <div>
             <div id="ou">O/U: {overUnder}</div>
             <div id="spread">Spread: {pointSpread}</div>

@@ -8,11 +8,13 @@ class ActionFeed extends React.Component {
     super(props);
     this.state = {
       bets: [],
-      games: []
+      games: [],
+      endedGames: []
     };
 
     this.getActiveBets = this.getActiveBets.bind(this);
     this.fetchLiveData = this.fetchLiveData.bind(this);
+    this.updateStatusOfCompleteGames = this.updateStatusOfCompleteGames.bind(this);
   }
 
   componentDidMount() {
@@ -20,9 +22,10 @@ class ActionFeed extends React.Component {
   }
 
   fetchLiveData() {
-    const date = "2021-05-19";
+    const date = "2021-05-20";
     const { bets } = this.state;
     console.log('bets', bets);
+    const gamesThatAreFinal = [];
     $.ajax({
       method: 'GET',
       url: `/mlbGames?date=2021-05-19`,
@@ -49,20 +52,40 @@ class ActionFeed extends React.Component {
               liveBetObject.homeTeamErrors = data[i].HomeTeamErrors;
               liveBetObject.inning = data[i].Inning;
               liveBetObject.status = data[i].Status;
+              if (data[i].Status === "Final") {
+                gamesThatAreFinal.push(liveBetObject);
+              }
             }
+
           }
           liveBetGameData.push(liveBetObject);
+          console.log('gamesthatarefinal', gamesThatAreFinal);
 
         })
         console.log('LBGD', liveBetGameData);
-
-
         this.setState({
-          games: liveBetGameData
+          games: liveBetGameData,
+          endedGames: gamesThatAreFinal
         });
       },
       error: (err) => console.log(err),
     })
+  }
+
+  updateStatusOfCompleteGames() {
+    const { endedGames } = this.state;
+    console.log('endedgames');
+    const endedGamePromises = [];
+    endedGames.forEach(game => {
+      $.ajax({
+      method: 'PUT',
+      url: `/mlbBets?gameId=${game.gameId}&awayRuns=${game.awayTeamRuns}&homeRuns=${game.homeTeamRuns}`,
+      success: () => console.log('worked'),
+      error: (err) => console.log('didntwork', err)
+      })
+    })
+    // series of PUT requests
+    // promisify all of them?
   }
 
   getActiveBets() {
@@ -79,12 +102,11 @@ class ActionFeed extends React.Component {
   }
 
   calculateLiveTokens() {
-    const { bets } = this.state;
+    const { games } = this.state;
     let liveTokens = 0;
-    for (var i = 0; i < bets.length; i++) {
-      liveTokens += parseInt(bets[i].wager);
+    for (var i = 0; i < games.length; i++) {
+      liveTokens += parseInt(games[i].wager);
     }
-    console.log('livetokens', liveTokens);
     return liveTokens;
   }
 
@@ -97,18 +119,20 @@ class ActionFeed extends React.Component {
 
     return (
       <div id="action-container">
+        <button onClick={this.updateStatusOfCompleteGames}id="updatecomplete">Get Active Game Stats</button>
         <div id="action-feed-summary">
           <button onClick={this.fetchLiveData} id="refresh-live-data">Refresh</button>
+          <button onClick={this.getActiveBets} id="get-active-bets">Get Active Bets</button>
           <p>Live Tokens: {this.calculateLiveTokens()}</p>
-          <p>Projection: ?????</p>
         </div>
         <div id="action-feed">
-          {games.map(game => {
+          {games.length > 0 ? games.map(game => {
             return <LiveBet
               key={`${game.gameId}${game.wager}`}
               wager={game.wager}
               payOut={game.payOut}
               selectedBet={game.selectedBet}
+              overUnder={game.overUnder}
               awayTeam={game.awayTeam}
               homeTeam={game.homeTeam}
               gameId={game.gameId}
@@ -123,6 +147,26 @@ class ActionFeed extends React.Component {
               homeTeamError={game.homeTeamErrors}
               inning={game.inning}
             />
+          }) : bets.map(bet => {
+            return <LiveBet
+              key={`${bet.gameId}${bet.wager}`}
+              wager={bet.wager}
+              payOut={bet.payOut}
+              selectedBet={bet.selectedBet}
+              awayTeam={bet.awayTeam}
+              homeTeam={bet.homeTeam}
+              gameId={bet.gameId}
+              status={bet.status}
+              win={bet.win}
+              time={bet.time}
+              awayTeamRuns={bet.awayTeamRuns}
+              awayTeamHits={bet.awayTeamHits}
+              awayTeamErrors={bet.awayTeamErrors}
+              homeTeamRuns={bet.homeTeamRuns}
+              homeTeamHits={bet.homeTeamHits}
+              homeTeamError={bet.homeTeamErrors}
+              inning={bet.inning}
+              />
           })}
         </div>
       </div>

@@ -1,4 +1,5 @@
 import React from 'react';
+import moment from 'moment';
 
 class LiveBet extends React.Component {
   constructor(props) {
@@ -6,7 +7,6 @@ class LiveBet extends React.Component {
   }
 
   render() {
-    console.log('props', this.props);
     const {
       wager,
       payOut,
@@ -27,11 +27,11 @@ class LiveBet extends React.Component {
     } = this.props;
     const ML = (Math.floor(Math.random() * 300) + 100).toFixed(0);
     return (
-    <div id="bet">
+    <div id="live-bet">
       <div id="game-summary">
-        {awayTeam} @ {homeTeam} | {status === 'final' ? status : `${inning}/9`} | {awayTeam} {awayTeamRuns} | {homeTeam} {homeTeamRuns}
+        {awayTeam} @ {homeTeam} | {status === 'Final'  || 'Scheduled' ? status : `${inning}/9`} | {awayTeam} {awayTeamRuns} | {homeTeam} {homeTeamRuns}
         <div>
-       {time}
+       {moment(time).calendar()}
         </div>
       </div>
       <div id="bet-tokens">

@@ -11,6 +11,7 @@ const recordBaseballBet = (data, callback) => {
     wager: data.wager,
     payOut: data.payOut,
     win: data.win,
+    overUnder: data.overUnder,
     homeTeamRuns: 0,
     homeTeamHits: 0,
     homeTeamErrors: 0,
@@ -38,7 +39,29 @@ const searchActiveBaseballBets = (callback) => {
   })
 }
 
+const searchCompleteBaseballBets = (callback) => {
+  BaseballBet.find({ status: "Final" }, (err, bets) => {
+    if (err) {
+      callback(err);
+    } else {
+      callback(null, bets);
+    }
+  })
+}
+
+const updateGameToComplete = (gameId, awayTeamRuns, homeTeamRuns, callback) => {
+  BaseballBet.updateMany({ gameId: gameId }, { awayTeamRuns: awayTeamRuns, homeTeamRuns: homeTeamRuns, status: "Final" }, (err, updates) => {
+    if (err) {
+      callback(err);
+    } else {
+      callback(null, updates);
+    }
+  })
+}
+
 module.exports = {
   recordBaseballBet,
-  searchActiveBaseballBets
+  searchActiveBaseballBets,
+  searchCompleteBaseballBets,
+  updateGameToComplete
 };

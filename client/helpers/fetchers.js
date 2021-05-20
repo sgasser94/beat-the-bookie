@@ -17,5 +17,22 @@ module.exports = {
       success: (data) => resolve(data),
       error: (err) => reject(err),
     })
-  })
+  }),
+  // updateCompleteBets: (id, awayRuns, homeRuns) => new Promise((resolve, reject) => {
+  //   $.ajax({
+  //     method: 'PUT',
+  //     url: `/mlbBets?gameId=${id}&awayRuns=${awayRuns}&homeRuns=${homeRuns}`,
+  //     success: () => resolve(),
+  //     error: (err) => reject(err)
+  //   })
+  // }),
+
+  updateCompleteBets: (id, awayRuns, homeRuns, callback) => {
+    $.ajax({
+      method: 'PUT',
+      url: `/mlbBets?gameId=${id}&awayRuns=${awayRuns}&homeRuns=${homeRuns}`,
+      success: () => console.log('worked'),
+      error: (err) => console.log('didntwork', err)
+    })
+  }
 }
