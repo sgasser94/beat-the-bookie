@@ -28,20 +28,26 @@ class PastBet extends React.Component {
     } = this.props;
     const winningTeam = awayTeamRuns > homeTeamRuns ? awayTeam : homeTeam;
     const teamBetOn = selectedBet === "awayML" ? awayTeam : homeTeam;
+    let result = '';
+    if (winningTeam === teamBetOn) {
+      result = <div id="won-bet">+{payOut} Tokens</div>
+    } else {
+      result = <div id="lost-bet">-{payOut} Tokens</div>
+    }
 
     return (
     <div id="past-bet">
     <div id="game-summary">
       {awayTeam} {awayTeamRuns} | {homeTeam} {homeTeamRuns}
       <div>
-     {moment(time).calendar()}
+     {status} | {moment(time).calendar()}
       </div>
     </div>
     <div id="bet-summary">
     selectedBet: {teamBetOn}, {winningTeam} won
     </div>
     <div id="bet-tokens">
-      Bet {wager} for {payOut}
+      {result}
     </div>
   </div>
     )

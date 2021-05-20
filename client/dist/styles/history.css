@@ -14,7 +14,14 @@
   margin-right: 5px;
   display: flex;
   height: 100px;
-  border-radius: 10px;
+  border-radius: 7px;
   background-color: white;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px 0px;
+}
+
+#won-bet {
+  color: limegreen;
+}
+#lost-bet {
+  color: red;
 }

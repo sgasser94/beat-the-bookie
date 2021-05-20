@@ -45,8 +45,7 @@ class HistoryFeed extends React.Component {
     return (
       <div id="history-container">
         <div id="history-feed-summary">
-          <p>Past week: {netTokens} tokens</p>
-          <p>Won 24% of bets (24/100)</p>
+          Past Bets
         </div>
         <div id="history-feed">
           {oldBets.map(game => {

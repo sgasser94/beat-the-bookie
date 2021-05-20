@@ -28,7 +28,7 @@ class ActionFeed extends React.Component {
     const gamesThatAreFinal = [];
     $.ajax({
       method: 'GET',
-      url: `/mlbGames?date=2021-05-19`,
+      url: `/mlbGames?date=2021-05-20`,
       success: (data) => {
         console.log('live', data);
         const liveBetGameData = [];
@@ -102,12 +102,19 @@ class ActionFeed extends React.Component {
   }
 
   calculateLiveTokens() {
-    const { games } = this.state;
+    const { games, bets } = this.state;
     let liveTokens = 0;
-    for (var i = 0; i < games.length; i++) {
-      liveTokens += parseInt(games[i].wager);
+    if (games.length > 0) {
+      for (var i = 0; i < games.length; i++) {
+        liveTokens += parseInt(games[i].wager);
+      }
+      return liveTokens;
+    } else {
+      for (var i = 0; i < bets.length; i++) {
+        liveTokens += parseInt(bets[i].wager);
+      }
+      return liveTokens;
     }
-    return liveTokens;
   }
 
 
@@ -119,8 +126,9 @@ class ActionFeed extends React.Component {
 
     return (
       <div id="action-container">
-        <button onClick={this.updateStatusOfCompleteGames}id="updatecomplete">Get Active Game Stats</button>
+        <button onClick={this.updateStatusOfCompleteGames}id="updatecomplete">Update Status of Complete Games</button>
         <div id="action-feed-summary">
+          Active Bets
           <button onClick={this.fetchLiveData} id="refresh-live-data">Refresh</button>
           <button onClick={this.getActiveBets} id="get-active-bets">Get Active Bets</button>
           <p>Live Tokens: {this.calculateLiveTokens()}</p>

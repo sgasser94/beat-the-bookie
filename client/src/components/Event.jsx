@@ -67,19 +67,28 @@ class Event extends React.Component {
     return (
       <div id="event">
         {betModal}
-        <div id="teams-date-location">
-          <strong>{awayTeam} ({awayML > 0 ? `+${awayML}` : awayML}) @ {homeTeam} ({homeML > 0 ? `+${homeML}` : homeML})</strong>
-          <div>
-            <div id="ou">O/U: {overUnder}</div>
-            <div id="spread">Spread: {pointSpread}</div>
+        <div id="event-left-half">
+          <div id="event-top-left">
+            {status === 'InProgress' || status === 'Final' ? (<strong>{awayTeam} {awayTeamRuns} | {homeTeam} {homeTeamRuns} | {inning}/9</strong>) : (<strong>{awayTeam} ({awayML > 0 ? `+${awayML}` : awayML}) @ {homeTeam} ({homeML > 0 ? `+${homeML}` : homeML})</strong>)}
           </div>
+          <div id="event-bottom-left">
+            <div>
+            {moment(time).format('LT')}
+
+            </div>
+          Location: {stadium}
+          </div>
+
         </div>
-        <div id="odds-bet-button">
-          <div id="odds">
-        {moment(time).format('LT')}
+        <div id="event-right-half">
+          <div id="event-top-right">
+            <div id="ou">O/U: {overUnder}</div>
+            <div id="spread">Spread: {Math.abs(pointSpread)}</div>
           </div>
-          <div id="bet-button-wrapper">
-            <button id="bet-button" onClick={this.toggleBetModal}>BET</button>
+          <div id="event-bottom-right">
+            {status === 'Scheduled' ? (
+              <button id="bet-button" onClick={this.toggleBetModal}>BET</button>
+            ) : ''}
           </div>
         </div>
       </div>

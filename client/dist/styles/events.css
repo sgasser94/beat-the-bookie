@@ -27,46 +27,67 @@
   margin-left: 5px;
   margin-right: 5px;
   display: flex;
-  flex-direction: column;
   height: 100px;
   border-radius: 10px;
   background-color: white;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px 0px;
 }
 
-#teams-date-location {
-  display: flex;
-  justify-content: space-around;
-  height: 30%;
-  margin-top: 1%;
+#event-left-half {
+  width: 50%;
 }
 
-#odds-bet-button {
+#event-right-half {
+  width: 50%;
   display: flex;
-  justify-content: space-around;
+}
+
+#event-top-left {
+  height: 50%;
+  display: flex;
+  justify-content: center;
   align-items: center;
-  height: 60%;
+  font-size: 22px;
 }
 
-#odds {
+#event-bottom-left {
+  height: 50%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+#event-top-right {
+  height: 100%;
+  width: 40%;
   display: flex;
   flex-direction: column;
+  justify-content: center;
 }
-
-#scoreboard {
+#event-bottom-right {
+  height: 100%;
+  width: 60%;
   display: flex;
   flex-direction: column;
+  justify-content: space-around;
 }
 
-.team-scoreboard {
-  display: flex;
-  justify-content: space-evenly;
+#bet-button {
+  background-color: rgb(189, 30, 89);
+  border: none;
+  color: white;
+  font-size: 24px;
+  width: 70%;
+  height: 50%;
+  margin: auto;
+  cursor: pointer;
+  border-radius: 12px;
+}
+#bet-button:hover {
+  background-color: rgb(255, 56, 92);
 }
 
-#scoreboard-labels {
-  display: flex;
-  justify-content: space-evenly;
-}
 
 #page-blocker {
   position: fixed;
