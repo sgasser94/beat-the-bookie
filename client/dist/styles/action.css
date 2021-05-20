@@ -16,6 +16,7 @@
 
 #game-info {
   width: 60%;
+  margin-left: 10px;
 }
 #game-summary {
   display: flex;
