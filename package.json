@@ -38,6 +38,7 @@
     "express": "^4.17.1",
     "jquery": "^3.6.0",
     "live-server": "^1.2.1",
+    "moment": "^2.29.1",
     "mongodb": "^3.6.6",
     "mongoose": "^5.12.9",
     "react": "^17.0.2",

@@ -1,6 +1,8 @@
 import React from 'react';
 import Modal from './Modal.jsx'
 import BetPopup from './BetPopup.jsx';
+import moment from 'moment';
+
 
 class Event extends React.Component {
   constructor(props) {
@@ -67,12 +69,14 @@ class Event extends React.Component {
         {betModal}
         <div id="teams-date-location">
           <strong>{awayTeam} ({awayML > 0 ? `+${awayML}` : awayML}) {awayML < 0 && pointSpread ? pointSpread : ''} @ {homeTeam} ({homeML > 0 ? `+${homeML}` : homeML})</strong>
-        {time}, Stadium ID {stadium}
+          <div>
+            <div id="ou">O/U: {overUnder}</div>
+            <div id="spread">Spread: {pointSpread}</div>
+          </div>
         </div>
         <div id="odds-bet-button">
           <div id="odds">
-            <div id="ou">O/U: {overUnder}</div>
-            <div id="spread">Spread: {pointSpread}</div>
+        {moment(time).format('LT')}
           </div>
           <div id="bet-button-wrapper">
             <button id="bet-button" onClick={this.toggleBetModal}>BET</button>

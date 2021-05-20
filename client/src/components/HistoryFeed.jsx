@@ -10,9 +10,21 @@ class HistoryFeed extends React.Component {
     }
   }
 
+  componentDidMount() {
+    // get bets from database
+    // get games from yesterday
+    // iterate through today's games
+      // iterate through bets
+        // make object with game results and bet info
+        // set state with all of those objects
+        // those obects will be the props for each PastBet
+  }
+
   render() {
     const { oldBets, oldWins } = this.state;
     const netTokens = (Math.random() * 10000).toFixed(2);
+    // const netTokens = sum all wagers where score went over/under or correct team won
+
     return (
       <div id="history-container">
         <div id="history-feed-summary">
@@ -27,11 +39,6 @@ class HistoryFeed extends React.Component {
               date={result.date}
               BET???
           })} */}
-          <PastBet />
-          <PastBet />
-          <PastBet />
-          <PastBet />
-          <PastBet />
         </div>
       </div>
     )

@@ -100,7 +100,7 @@ class ActionFeed extends React.Component {
         <div id="action-feed-summary">
           <button onClick={this.fetchLiveData} id="refresh-live-data">Refresh</button>
           <p>Live Tokens: {this.calculateLiveTokens()}</p>
-          <p>Projection: {projectedTokens} Tokens</p>
+          <p>Projection: ?????</p>
         </div>
         <div id="action-feed">
           {games.map(game => {
