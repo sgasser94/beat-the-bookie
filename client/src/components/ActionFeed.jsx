@@ -41,6 +41,7 @@ class ActionFeed extends React.Component {
             wager: bet.wager,
             payOut: bet.payOut,
             time: bet.time,
+            overUnder: bet.overUnder
           };
           for (let i = 0; i < data.length; i++) {
             if (data[i].GameID === liveBetObject.gameId) {
@@ -163,6 +164,7 @@ class ActionFeed extends React.Component {
               selectedBet={bet.selectedBet}
               awayTeam={bet.awayTeam}
               homeTeam={bet.homeTeam}
+              overUnder={bet.overUnder}
               gameId={bet.gameId}
               status={bet.status}
               win={bet.win}

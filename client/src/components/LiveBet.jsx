@@ -23,22 +23,39 @@ class LiveBet extends React.Component {
       homeTeamRuns,
       homeTeamHits,
       homeTeamError,
-      inning
+      inning,
+      overUnder
     } = this.props;
     console.log('livebet', this.props);
     const ML = (Math.floor(Math.random() * 300) + 100).toFixed(0);
+    let normalizedSelectedBet = '';
+    if (selectedBet === 'awayML') {
+      normalizedSelectedBet = `${awayTeam} ML`;
+    } else if (selectedBet === 'homeML') {
+      normalizedSelectedBet = `${homeTeam} ML`;
+    } else if (selectedBet === 'over') {
+      normalizedSelectedBet = `Over ${overUnder}`;
+    } else {
+      normalizedSelectedBet = `Under ${overUnder}`;
+    }
     return (
       <div id="live-bet">
+        <div id="game-info">
         <div id="game-summary">
-          {awayTeam} @ {homeTeam} | {status === 'Final' || 'Scheduled' ? status : `${inning}/9`} | {awayTeam} {awayTeamRuns} | {homeTeam} {homeTeamRuns}
-          <div>
-            <div>
-            {moment(time).calendar()}
-            </div>
-          </div>
+          {(status === 'Scheduled' ? (`${awayTeam} @ ${homeTeam}`) : `${awayTeam} ${awayTeamRuns} | ${homeTeam} ${homeTeamRuns}  |
+           ${status === 'InProgress' ? inning + '/9' : status }`)}
         </div>
-        <div id="bet-tokens">
-          {selectedBet} | {wager} to win {payOut}
+        <div id="game-starttime">
+          {moment(time).calendar()}
+        </div>
+        </div>
+        <div id="bet-details">
+          <div>
+          {normalizedSelectedBet}
+          </div>
+          <div>
+           {wager} to win {payOut}
+          </div>
         </div>
       </div>
     )
