@@ -42,7 +42,7 @@ class LiveBet extends React.Component {
       <div id="live-bet">
         <div id="game-info">
         <div id="game-summary">
-          {(status === 'Scheduled' ? (`${awayTeam} @ ${homeTeam}`) : `${awayTeam} ${awayTeamRuns} | ${homeTeam} ${homeTeamRuns}  |
+          {(status === 'Scheduled' || status === undefined ? (`${awayTeam} @ ${homeTeam}`) : `${awayTeam} ${awayTeamRuns} | ${homeTeam} ${homeTeamRuns}  |
            ${status === 'InProgress' ? inning + '/9' : status }`)}
         </div>
         <div id="game-starttime">

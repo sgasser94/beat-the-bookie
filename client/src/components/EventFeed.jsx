@@ -26,6 +26,7 @@ class EventFeed extends React.Component {
       method: 'GET',
       url: `/mlbGames?date=${dateValue}`,
       success: (data) => {
+        console.log('fetch', data);
         this.setState({
           events: data
         });

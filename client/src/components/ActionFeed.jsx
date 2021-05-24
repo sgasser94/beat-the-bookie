@@ -127,11 +127,11 @@ class ActionFeed extends React.Component {
 
     return (
       <div id="action-container">
-        <button onClick={this.updateStatusOfCompleteGames}id="updatecomplete">Update Status of Complete Games</button>
         <div id="action-feed-summary">
           Active Bets
-          <button onClick={this.fetchLiveData} id="refresh-live-data">Refresh</button>
-          <button onClick={this.getActiveBets} id="get-active-bets">Get Active Bets</button>
+          <button onClick={this.fetchLiveData} id="refresh-live-data">Refresh Game Stats</button>
+          <button onClick={this.getActiveBets} id="get-active-bets">Update Bets</button>
+        <button onClick={this.updateStatusOfCompleteGames}id="updatecomplete">Finalize Games</button>
           <p>Live Tokens: {this.calculateLiveTokens()}</p>
         </div>
         <div id="action-feed">

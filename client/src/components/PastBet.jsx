@@ -39,7 +39,7 @@ class PastBet extends React.Component {
       <div id="past-bet">
         <div id="past-game-info">
           <div id="past-game-summary">
-            {awayTeam} {awayTeamRuns} ASDFASDFAS| {homeTeam} {homeTeamRuns}
+            {awayTeam} {awayTeamRuns} | {homeTeam} {homeTeamRuns}
           </div>
           <div id="past-game-starttime">
             {status} | {moment(time).calendar()}
